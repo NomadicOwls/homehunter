@@ -1,0 +1,67 @@
+---
+import { getCollection } from "astro:content";
+import { Picture } from "@astrojs/image/components";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+// Filter blog entries with 'draft: false' & date before current date
+const publishedBlogEntries = await getCollection("blog", ({ data }) => {
+  return !data.draft && data.publishDate < new Date();
+}); // Sort content entries by publication date publishedBlogEntries.sort(function (a, b) { return b.data.publishDate.valueOf() - a.data.publishDate.valueOf(); });
+
+// CosmicJS
+
+import { getAllPosts } from "../../lib/cosmic"
+const data = await getAllPosts()
+
+
+// CosmicJS
+---
+
+ <Layout title="Blog">
+  <div class="bg-babyblue flex h-96">
+    <div class="m-auto text-center">
+      <h1 class="font-bold text-6xl text-gray-800">Blog</h1>
+      <p class="text-lg font-light mt-4">
+        All that she wrote about honey
+      </p>
+    </div>
+  </div>
+  <Container>
+    <section class="bg-white">
+      <div class="container max-w-5xl p-6 mx-auto space-y-6 sm:space-y-12">
+        <div
+          class="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+
+          {
+            data.map((blogs) => (
+              <a
+                rel="noopener noreferrer"
+                href={`/blog/${blogs.slug}`}
+                class="max-w-sm mx-auto group hover:no-underline focus:no-underline bg-white rounded shadow">
+                <Picture
+                  src= "https://imgix.cosmicjs.com/99fd6650-23f5-11e7-875c-3f5dc9c15c2b-beach.jpg"
+                  alt={blogs.title}
+                  sizes="(max-width: 800px) 100vw, 800px"
+                  widths={[200, 400, 800]}
+                  aspectRatio="16:9"
+                  background="#ffffff"
+                  fit="cover"
+                  position="center"
+                  class="w-full rounded-md"
+                />
+                <div class="p-6 space-y-2">
+                  <h3 class="text-center text-2xl font-semibold group-hover:underline group-focus:underline">
+                    {" "}
+                   {blogs.title}
+                  </h3>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </Container>
+</Layout>

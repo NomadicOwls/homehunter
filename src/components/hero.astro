@@ -1,0 +1,56 @@
+---
+import Link from "@components/ui/link.astro";
+import { Icon } from "astro-icon";
+import Snipcart from "@components/snipcart.astro";
+---
+<!--Snipcart -->
+<Snipcart />
+<div class="container">
+
+    <h1>Dutch Housing Hunter ( Beta )</h1>
+
+    <button type="button" class="btn-how-it-works" value="how it works" onclick="showDiv()">How it works</button>
+    <section>
+        <form>
+            <label id="place" class="is-visible">
+                <label class="label-heading" for="place">Where do you want to live?</label>
+                <input type="text" name="place" placeholder="Rotterdam, Amsterdam, The Hague, Utrecht" required />
+                </br></br>
+                <button type="button" class="nav-button" value="next" onclick="next('place','rooms')">Next</button>
+
+              
+                <div class="nav-btn-div">
+
+                    <i class="fa fa-arrow-right" style="font-size:24px" onclick="next('place','rooms')"></i>
+                   
+                </div>
+            </label>
+            <label id="rooms">
+                <label class="label-heading" for="rooms">How many rooms are you looking for?</label>
+                <input type="number" name="rooms" placeholder="number of rooms" required />
+                <br /><br />
+                <button type="button" class="nav-button" value="next" onclick="next('rooms','message')">Next</button>
+                <div class="nav-btn-div">
+                    <i class="fa fa-arrow-left" style="font-size:24px" onclick="previous('rooms','place')"></i>
+                    <i class="fa fa-arrow-right" style="font-size:24px" onclick="next('rooms','message')"></i>
+                </div>
+            </label>
+            <label id="message">
+                <label class="label-heading" for="message">Describe me your desired room, studio, appartment? <br /><small> The more details, the better we have an idea of what you want</small></label>
+                <input type="textarea" name="message" placeholder="Describe your space" required />
+                <br /><br />
+                <button class="snipcart-add-item btn bg-orangeluxury hover:bg-yellow-700 border-yellow-600 hover:border-yellow-700 text-white inquiry-btn submit-btn w-full !h-12 rounded py-3 px-3 text-center cursor-pointer" data-item-id="naam" data-item-custom1-name="Referral code" data-item-stackable="always" data-item-price="100" data-item-description="Wij gaan zoeken voor jou terwijl je aan het werk bent" data-item-image="" data-item-name="Homehunter package">
+                    Submit & let homehunter find my new home
+                </button>
+
+                
+                <div class="nav-btn-div">
+
+                   <i class="fa fa-arrow-left" style="font-size:24px" onclick="previous('message','rooms')"></i>
+                   
+                </div>
+            </label>
+        </form>
+    </section>
+</div>
+

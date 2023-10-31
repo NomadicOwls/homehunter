@@ -1,0 +1,71 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+import PricingTables from "@components/pricingTables.astro";
+import USP from "@components/usp.astro";
+import Hero from "@components/hero.astro";
+import Sticky from "@components/sticky.astro";
+
+const { frontmatter } = Astro.props;
+---
+<style is:global>
+
+    
+    #bodycopy{
+        
+    }
+
+    
+</style>
+
+<Layout>
+<!--     <div class="bg-orange text-center">
+        <Container>
+            <section class="flex flex-col  mx-auto py-28">
+                <div class="w-full">
+                    <h1 class="font-bold text-4xl text-gray-800">
+                        {frontmatter.title}
+                    </h1>
+
+                    {
+                        frontmatter.description ? (
+                            <p class="text-2xl py-4">{frontmatter.description}</p>
+                        ) : (
+                            <ul class="benefits lead text-xl pt-4 list-unstyled">
+                                <li class="inline-block">Personalized name,</li>
+                                <li class="inline-block">Honeyspoon,</li>
+                                <li class="inline-block">Hexagonal jars,</li>
+                                <li class="inline-block">100ml,</li>
+                                <li class="inline-block">Adapted to your theme</li>
+                            </ul>
+                        )
+                    }
+                </div>
+            </section>
+        </Container>
+    </div> -->
+
+       <div class="container mx-auto px-4 max-w-7xl">
+        <div class="grid sm:grid-cols-2 md:grid-cols-2 mt-4 gap-4">
+            <div class="flex items-center">
+                <h1 class="text-5xl lg:text-6xl xl:text-6xl font-bold">
+                     {frontmatter.title}
+                </h1>
+            </div>
+            <div class="py-20 px-7">
+                <img src="https://images.unsplash.com/photo-1504712598893-24159a89200e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80" alt="">
+            </div>
+        </div>
+    </div>
+    <Container>
+        <div class="flex flex-col mx-auto my-16 lg:flex-row ">
+            <article id="bodycopy" class="prose w-full space-y-6">
+                <slot />
+            </article>
+           <Sticky />
+        </div>
+    </Container>
+<!--     <PricingTables />
+    <USP /> -->
+</Layout>

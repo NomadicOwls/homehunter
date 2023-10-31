@@ -1,0 +1,142 @@
+---
+import { Tick } from "@components/ui/icons";
+import Link from "@components/ui/link.astro";
+import tomSelect from '@tom-select';
+const { plan } = Astro.props;
+---
+<script type="text/javascript">
+function showNext(e) {
+
+    document.getElementById('step-1').style.display = 'none';
+    document.getElementById('step-2').style.display = 'block';
+    document.getElementById('step-1-indicator').classList.remove('bg-gray-100', 'border-b-2', 'border-indigo-500');
+    document.getElementById('step-2-indicator').classList.add('bg-gray-100', 'border-b-2', 'border-indigo-500');
+
+    e.preventDefault();
+
+}
+
+function showPrevious(e) {
+
+    document.getElementById('step-2').style.display = 'none';
+    document.getElementById('step-1').style.display = 'block';
+    document.getElementById('step-1-indicator').classList.add('bg-gray-100', 'border-b-2', 'border-indigo-500');
+    document.getElementById('step-2-indicator').classList.remove('bg-gray-100', 'border-b-2', 'border-indigo-500');
+    e.preventDefault();
+
+}
+
+new TomSelect("#preferred_services",{
+    maxItems: 3
+});
+</script>
+<section class="flex flex-col w-full md:w-1/2 p-12 space-y-6">
+    <aside class="md:sticky  bg-white shadow rounded-xl px-10 py-10" style="">
+        <div class="flex flex-wrap mx-auto">
+            <a id="step-1-indicator" class="
+              inline-flex
+              items-center
+              justify-center
+              py-3
+              font-medium
+              leading-none
+              tracking-wider
+              text-indigo-500
+              bg-gray-100
+              border-b-2 border-indigo-500
+              rounded-t
+              sm:px-12 sm:w-auto sm:justify-start
+              title-font
+            ">
+                1
+            </a>
+            <a id="step-2-indicator" class="
+              inline-flex
+              items-center
+              justify-center
+              w-1/2
+              py-3
+              font-medium
+              sm:px-12 sm:w-auto sm:justify-start
+              title-font
+              hover:text-gray-900
+            ">
+                2
+            </a>
+        </div>
+        <div id="step-1">
+            <!-- form - start -->
+            <form class="max-w-screen-md mx-auto">
+                <div class="flex flex-col mb-4 py-2">
+                    <label for="name" class="inline-flex mb-2 text-sm text-gray-800">What product are you interested in?</label>
+                    <select name="legal-entity" id="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option value="Wedding souvenir">Wedding souvenir</option>
+                        <option value="Idul Fitri Hampers">Idul Fitri Hampers</option>
+                        <option value="Valentine Gifts">Valentine gifts</option>
+                        <option value="Personal consumption">Personal consumption</option>
+                        <option value="Bali Souvenir">Bali souvenir</option>
+                    </select>
+                </div>
+                <div class="flex flex-col mb-4 py-2">
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Quantity of order</label>
+                    <select name="number_invoices" id="" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option value="< 25">25 or less</option>
+                        <option value="25 - 100">25 to 50</option>
+                        <option value="100 - 250">50 to 100</option>
+                        <option value="250 - 500">100 & more</option>
+                    </select>
+                </div>
+                <div class="flex flex-col mb-2 py-2">
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Which flavors are you interested in?</label>
+
+                    <select id="preferred_services" name="preferred_services[]" multiple class="preferredservices border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option value="jungle honey">Jungle honey</option>
+                        <option value="wildflower honey">Wildflower honey</option>
+                        <option value="royal jelly honey">Royal jelly honey</option>
+                    </select>
+
+
+                </div>
+             
+                <div class="flex items-center justify-between">
+                    <button id="next-btn" class="
+                      px-6
+                      py-2
+                      text-sm text-white
+                      bg-indigo-500
+                      rounded-lg
+                      outline-none
+                      hover:bg-indigo-600
+                      ring-indigo-300
+                    " onclick="return showNext(event)">
+                        Next step
+                    </button>
+                </div>
+        </div>
+        <div id="step-2" class="hidden">
+            <div class="mb-6">
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900">First & Last name <span class="text-red-500">*</span></label>
+                <input type="email" id="email" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+            </div>
+            <div class="mb-6">
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email <span class="text-red-500">*</span></label>
+                <input type="email" id="email" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+            </div>
+            <div class="mb-6">
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Phone number / Whatsapp </label>
+                <input type="email" id="email" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+            </div>
+            <div class="mb-6">
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Anything else we need to know?</label>
+                <textarea name="message" class="border border-gray-300 w-full rounded-lg focus:ring-blue-500 focus:border-blue-500" id="" cols="30" rows="5"></textarea>
+            </div>
+            <div class="flex justify-between">
+                <button onclick="return showPrevious(event)">
+                    Previous step
+                </button>
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send inquiry</button>
+            </div>
+        </div>
+        </form>
+    </aside>
+</section>
