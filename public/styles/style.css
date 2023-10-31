@@ -359,3 +359,10 @@ label.label-heading {
       margin-right: 5px;
     }
 
+
+    /* Snipcart */
+
+    .snipcart-item-line__quantity {
+      display:none;
+    }
+
