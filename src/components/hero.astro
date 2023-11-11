@@ -5,66 +5,121 @@ import Snipcart from "@components/snipcart.astro";
 ---
 <!--Snipcart -->
 <Snipcart />
-<div class="container">
 
-    <h1>Dutch Housing Hunter ( Beta )</h1>
 
-    <button type="button" class="btn-how-it-works" value="how it works" onclick="showDiv()">How it works</button>
-    <section>
-        <form>
-            <label id="place" class="is-visible">
-                <label class="label-heading" for="place">Where do you want to live?</label>
-                <input type="text" name="place" placeholder="Rotterdam, Amsterdam, The Hague, Utrecht" required />
-                </br></br>
-                <button type="button" class="nav-button" value="next" onclick="next('place','rooms')">Next</button>
+<!-- In your HTML, include the following classes within the respective elements -->
+  
 
-              
-                <div class="nav-btn-div">
+<div class="relative h-full flex flex-col items-center justify-center">
+  <h1 class="text-white text-2xl bold">Dutch Housing Hunter (Beta)</h1>
 
-                    <i class="fa fa-arrow-right" style="font-size:24px" onclick="next('place','rooms')"></i>
-                   
-                </div>
-            </label>
-            <label id="rooms">
-                <label class="label-heading" for="rooms">How many rooms are you looking for?</label>
-                <input type="number" name="rooms" placeholder="number of rooms" required />
-                <br /><br />
-                <button type="button" class="nav-button" value="next" onclick="next('rooms','message')">Next</button>
-                <div class="nav-btn-div">
-                    <i class="fa fa-arrow-left" style="font-size:24px" onclick="previous('rooms','place')"></i>
-                    <i class="fa fa-arrow-right" style="font-size:24px" onclick="next('rooms','message')"></i>
-                </div>
-            </label>
-            <label id="message">
-                <label class="label-heading" for="message">Describe me your desired room, studio, appartment? <br /><small> The more details, the better we have an idea of what you want</small></label>
-                <input type="textarea" name="message" placeholder="Describe your space" required />
-                <br /><br />
-                <button class="snipcart-add-item btn bg-orangeluxury hover:bg-yellow-700 border-yellow-600 hover:border-yellow-700 text-white inquiry-btn submit-btn w-full !h-12 rounded py-3 px-3 text-center cursor-pointer" 
-                data-item-id="naam" 
-                data-item-custom1-name="Where do I want to live" 
-                data-item-price="10" 
-                data-item-description="I'd love a balcony" 
-                data-item-image="" 
-                data-item-max-quantity="1"
-                data-item-name="Homehunter Request" 
-                data-item-custom1-value="Amsterdam" 
-                data-item-custom2-name="How many rooms do you want" 
-                data-item-custom2-value="3" 
-                data-item-custom3-name="Tell me about your desired home"
-                data-item-custom3-type="textarea" 
-                data-item-custom3-value="I need a apartment that is located on the first floor with a balcony and terrace in a new building. It should be simple, cosy, modern, and bright. The bathroom must include a washing machine and a comfortable shower.'" 
-                data-item-shippable="false">
-                    Submit & let homehunter find my new home
-                </button>
+  <button id="btn-how-it-works"
+    type="button"
+    class="px-10 py-5 bg-transparent text-gray-200 mt-5 uppercase cursor-pointer inline-block"
+    value="how it works"
 
-                
-                <div class="nav-btn-div">
+  >
+    How it works
+  </button>
 
-                   <i class="fa fa-arrow-left" style="font-size:24px" onclick="previous('message','rooms')"></i>
-                   
-                </div>
-            </label>
-        </form>
-    </section>
+
+
+  <section class="w-full">
+<form class="text-center py-8">
+  <label id="place" class="is-visible">
+    <label class="label-heading text-white" for="place">
+      Where do you want to live?
+    </label>
+    <input
+      type="text"
+      name="place"
+      placeholder="Rotterdam, Amsterdam, The Hague, Utrecht"
+      required
+      class="bg-transparent border-b-2 border-white text-white text-2xl my-4"
+    />
+
+    <div class="nav-btn-div">
+      <i class="fa fa-arrow-right" style="font-size:24px" onclick="next('place','rooms')"></i>
+    </div>
+  </label>
+
+  <label id="rooms">
+    <label class="label-heading text-white" for="rooms">
+      How many rooms are you looking for?
+    </label>
+    <input
+      type="number"
+      name="rooms"
+      placeholder="number of rooms"
+      required
+      class="bg-transparent border-b-2 border-white text-white text-2xl my-4"
+    />
+
+    <div class="nav-btn-div">
+      <i class="fa fa-arrow-left" style="font-size:24px" onclick="previous('rooms','place')"></i>
+      <i class="fa fa-arrow-right" style="font-size:24px" onclick="next('rooms','personality')"></i>
+    </div>
+  </label>
+
+
+    <label id="personality">
+    <label class="label-heading text-white" for="personality">
+      Tell us something about yourself <br />
+      The more details, the better we have an idea of who you are!
+    </label>
+<textarea
+  name="personality"
+  placeholder="I love the be quiet, playing guitar "
+  required
+  class="bg-transparent border-b-2 border-white text-white text-2xl my-4 py-4 px-6 w-3/4 mx-auto"
+  rows="5"
+></textarea>
+
+    <div class="nav-btn-div">
+      <i class="fa fa-arrow-left" style="font-size:24px" onclick="previous('personality','rooms')"></i>
+      <i class="fa fa-arrow-right" style="font-size:24px" onclick="next('personality','message')"></i>
+    </div> 
+  </label>
+
+  <label id="message">
+    <label class="label-heading text-white" for="message">
+      Describe your desired room, studio, apartment? <br />
+      The more details, the better we have an idea of what you want
+    </label>
+<textarea
+  name="message"
+  placeholder="I need an apartment that is located on the first floor with a balcony and terrace in a new building. It should be simple, cozy, modern, and bright. The bathroom must include a washing machine and a comfortable shower.'"
+  required
+  class="bg-transparent border-b-2 border-white text-white text-2xl my-4 py-4 px-6 w-3/4 mx-auto"
+  rows="5"
+></textarea>
+
+    <button
+      class="mx-auto m-10 block snipcart-add-item bg-yellow-600 hover:bg-yellow-700 border-yellow-600 hover:border-yellow-700 text-white inquiry-btn submit-btn w-72 rounded py-3 px-3 text-center cursor-pointer"
+      data-item-id="naam"
+      data-item-custom1-name="Where do I want to live"
+      data-item-price="10"
+      data-item-description="I'd love a balcony"
+      data-item-image=""
+      data-item-max-quantity="1"
+      data-item-name="Homehunter Request"
+      data-item-custom1-value="Amsterdam"
+      data-item-custom2-name="How many rooms do you want"
+      data-item-custom2-value="3"
+      data-item-custom3-name="Tell me about your desired home"
+      data-item-custom3-type="textarea"
+      data-item-custom3-value="I need an apartment that is located on the first floor with a balcony and terrace in a new building. It should be simple, cozy, modern, and bright. The bathroom must include a washing machine and a comfortable shower.'"
+      data-item-shippable="false"
+    >
+      Submit & find my new home
+    </button>
+    <div class="nav-btn-div">
+      <i class="fa fa-arrow-left" style="font-size:24px" onclick="previous('message','personality')"></i>
+    </div> 
+  </label>
+</form>
+
+  </section>
 </div>
+
 

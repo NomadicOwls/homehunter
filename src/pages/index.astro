@@ -9,23 +9,18 @@ import Contact from "@components/contact.astro"
 import Nav from "@components/navbar/navbar.astro"
 ---
 
-<!-- <script>
-    // Get all menu links
-const menuLinks = document.querySelectorAll('nav a');
-
-// Add click event listeners to each link
-menuLinks.forEach(link => {
-  link.addEventListener('click', (event) => {
-    event.preventDefault(); // Prevent default behavior
-    const target = document.querySelector(link.getAttribute('href')); // Get target element
-    const topOffset = target.offsetTop; // Get target element's top offset
-    window.scrollTo({
-      top: topOffset, // Scroll to the target element's top offset
-      behavior: 'smooth' // Use smooth scrolling
-    });
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Get the scroll button element
+  const scrollButton = document.getElementById("btn-how-it-works");
+  
+  // Add a click event listener to the scroll button
+  scrollButton.addEventListener("click", function() {
+    const target = document.getElementById("how-it-works");
+    target.scrollIntoView({ behavior: 'smooth' });
   });
 });
-</script> -->
+</script>
 
 
 
