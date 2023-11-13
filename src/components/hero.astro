@@ -28,12 +28,13 @@ import Snipcart from "@components/snipcart.astro";
 
 
   <section class="w-full">
-<form class="text-center py-8">
+<form id="properties" class="text-center py-8">
   <label id="place" class="is-visible">
     <label class="label-heading text-white" for="place">
       Where do you want to live?
     </label>
     <input
+      id="place-input"
       type="text"
       name="place"
       placeholder="Rotterdam, Amsterdam, The Hague, Utrecht"
@@ -51,6 +52,7 @@ import Snipcart from "@components/snipcart.astro";
       How many rooms are you looking for?
     </label>
     <input
+      id="rooms-input"
       type="number"
       name="rooms"
       placeholder="number of rooms"
@@ -71,6 +73,7 @@ import Snipcart from "@components/snipcart.astro";
       The more details, the better we have an idea of who you are!
     </label>
 <textarea
+  id="personality-input"
   name="personality"
   placeholder="I love the be quiet, playing guitar "
   required
@@ -90,32 +93,38 @@ import Snipcart from "@components/snipcart.astro";
       The more details, the better we have an idea of what you want
     </label>
 <textarea
-  name="message"
+  id="description-input"
+  name="description"
   placeholder="I need an apartment that is located on the first floor with a balcony and terrace in a new building. It should be simple, cozy, modern, and bright. The bathroom must include a washing machine and a comfortable shower.'"
   required
   class="bg-transparent border-b-2 border-white text-white text-2xl my-4 py-4 px-6 w-3/4 mx-auto"
   rows="5"
 ></textarea>
 
-    <button
-      class="mx-auto m-10 block snipcart-add-item bg-yellow-600 hover:bg-yellow-700 border-yellow-600 hover:border-yellow-700 text-white inquiry-btn submit-btn w-72 rounded py-3 px-3 text-center cursor-pointer"
-      data-item-id="naam"
-      data-item-custom1-name="Where do I want to live"
-      data-item-price="10"
-      data-item-description="I'd love a balcony"
-      data-item-image=""
-      data-item-max-quantity="1"
-      data-item-name="Homehunter Request"
-      data-item-custom1-value="Amsterdam"
-      data-item-custom2-name="How many rooms do you want"
-      data-item-custom2-value="3"
-      data-item-custom3-name="Tell me about your desired home"
-      data-item-custom3-type="textarea"
-      data-item-custom3-value="I need an apartment that is located on the first floor with a balcony and terrace in a new building. It should be simple, cozy, modern, and bright. The bathroom must include a washing machine and a comfortable shower.'"
-      data-item-shippable="false"
-    >
-      Submit & find my new home
-    </button>
+    <button id="syncButton"
+   class="mx-auto m-10 block snipcart-add-item bg-yellow-600 hover:bg-yellow-700 border-yellow-600 hover:border-yellow-700 text-white inquiry-btn submit-btn w-72 rounded py-3 px-3 text-center cursor-pointer"
+   data-item-id="naam"
+   data-item-price="10"
+   data-item-custom1-name="where-do-i-want-to-live"
+   data-item-custom1-value=""
+   data-item-custom2-name="how-many-rooms-do-you-want"
+   data-item-custom2-value=""
+   data-item-custom3-name="tell-me-who-you-are"
+   data-item-custom3-type="textarea"
+   data-item-custom3-value=""
+   data-item-custom4-name="your-desired-space"
+   data-item-custom4-type="textarea"
+   data-item-custom4-value=""
+   data-item-description=""
+   data-item-image=""
+   data-item-max-quantity="1"
+   data-item-name="Homehunter Request"
+  
+ 
+   data-item-shippable="false"
+ >
+   Submit & find my new home
+ </button>
     <div class="nav-btn-div">
       <i class="fa fa-arrow-left" style="font-size:24px" onclick="previous('message','personality')"></i>
     </div> 
@@ -124,5 +133,31 @@ import Snipcart from "@components/snipcart.astro";
 
   </section>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var form = document.getElementById("properties");
+    var button = document.getElementById("syncButton");
+
+    button.addEventListener("click", function() {
+      var custom1Value = document.getElementById("place-input").value;
+      var custom2Value = document.getElementById("rooms-input").value;
+      var custom3Value = document.getElementById("personality-input").value;;
+      var custom4Value = document.getElementById("description-input").value;;
+
+      // Update the button's data attributes with the form values
+      button.setAttribute("data-item-custom1-value", custom1Value);
+      button.setAttribute("data-item-custom2-value", custom2Value);
+      button.setAttribute("data-item-custom3-value", custom3Value);
+      button.setAttribute("data-item-custom4-value", custom4Value);
+      button.setAttribute("data-item-description", custom4Value);
+
+      // You can now use these values to submit the form or perform other actions.
+      // For example, you can trigger the Snipcart functionality to add the item to the cart.
+    });
+  });
+</script>
+
+
 
 
